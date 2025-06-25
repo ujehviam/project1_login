@@ -1,22 +1,24 @@
-DB = ["Emmanuel", "Sam", "Tom"]  
+DB = {"Emmanuel":"1234a", "Sam":"4321a", "Tom":"1212a"}  
 
 def signup():
     while True:
-        newUser = input("Please create a unique username: ")
+        newUser = input("Please create a unique userName: ")
         if newUser in DB:
             print("Username", newUser, "is already in use. Please try another.")
         else:
-            DB.append(newUser)
+            newPassword = input("Enter you prefered password.")
+            DB[newUser] = newPassword
             print("You have successfully signed up as:", newUser)
             print(DB)
             break
 
 def login():
-    username = input("Enter your username: ")
-    if username in DB:
-        print("Welcome", username)
+    userName = input("Enter your username: ")
+    password = input("enter your password: ")
+    if userName in DB and password == DB[userName]:
+        print("welcome")
     else:
-        print("User not found!")
+        print("User not found!\nkindly create a new account")
         Begin()
 
 def Begin():
