@@ -1,4 +1,4 @@
-DB = ["Emmanuel"]
+DB = ["Emmanuel","Sam","Tom"]
 
 def login(Username=input("enter your Username: ")):
     global DB
