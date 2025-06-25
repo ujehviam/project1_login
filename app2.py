@@ -4,8 +4,8 @@ cursor = conn.cursor()
 
 cursor.execute('''
 CREATE TABLE IF NOT EXISTS users_login_credentials (
-    userName TEXT PRIMARY KEY,
-    PASSWORD TEXT NOT NULL
+    userName TEXT PRIMARY KEY NOT NULL,
+    password TEXT NOT NULL
 )
 ''')
 
