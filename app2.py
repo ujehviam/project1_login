@@ -48,6 +48,7 @@ def password_reset():
             cursor.execute("UPDATE users_login_credentials SET PASSWORD = ? WHERE userName = ?", (newPassword1, userName))
             print("\n PASSWORD HAS BEEN SUCCESSFULLY CHANGED \n")
             conn.commit()
+            break
         else:
             print("\n PASSWORD DOES NOT MATCH!\n")
             password_reset()    
