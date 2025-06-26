@@ -19,14 +19,18 @@ def signup():
             print("Username", newUser, "is already in use. Please try another.")
         else:
             createPassword = input("Enter you prefered password.")
-            cursor.execute("INSERT INTO users_login_credentials (userName, password) VALUES (?, ?)", (newUser, createPassword))#creates a new row and insert the usernam and password
-            conn.commit() #save all modifications done on the table
-            print("You have successfully signed up as:", newUser)
-            break
+            while len(createPassword) < 8:
+                print("password must be 8 or more characters long")
+                createPassword = input("Enter you prefered password.")
+            else:
+                cursor.execute("INSERT INTO users_login_credentials (userName, password) VALUES (?, ?)", (newUser, createPassword))#creates a new row and insert the usernam and password
+                conn.commit() #save all modifications done on the table
+                print("You have successfully signed up as:", newUser)
+                break
 
 def login():
     userName = input("Enter your username: ").capitalize()
-    password = input("enter your password: ")
+    password = input("enter password: ")
     cursor.execute("SELECT * FROM users_login_credentials WHERE userName = ? AND password =?", (userName, password))#query the table for the username
     if cursor.fetchone():#check if username exist in the table
         print("welcome")
@@ -42,13 +46,19 @@ def password_reset():
         Begin()
     else:
         newPassword1 = input("enter your new password: ")
+        while len(newPassword1) < 8:
+                print("password must be 8 or more characters long")
+                newPassword1 = input("enter your new password: ")
         newPassword2 = input("enter your new password again: ")
+        while len(newPassword2) < 8:
+                print("password must be 8 or more characters long")
+                newPassword2 = input("enter your new password: ")
 
         if newPassword1 == newPassword2:
             cursor.execute("UPDATE users_login_credentials SET PASSWORD = ? WHERE userName = ?", (newPassword1, userName))
             print("\n PASSWORD HAS BEEN SUCCESSFULLY CHANGED \n")
             conn.commit()
-            break
+            
         else:
             print("\n PASSWORD DOES NOT MATCH!\n")
             password_reset()    
