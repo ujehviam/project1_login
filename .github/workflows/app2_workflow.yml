@@ -1,7 +1,7 @@
 name: app2 workflow
 on: push
 jobs:
-  first_job:
+  Test:
     runs-on: ubuntu-latest
     steps:
       - name: checkout code
@@ -9,17 +9,27 @@ jobs:
       - name: set up python on the server
         uses: actions/setup-python@v5
         with:
-          python-version: '3.13' 
+          python-version: 3.13 
       - name: installing dependencies
         run: |
           python -m pip install --upgrade pip
           pip install flask
           sudo apt-get update
           sudo apt-get install -y sqlite3
-      - name:
-        run: python3 app.py
-
-      
-
-
-   
+      - name: test application code
+        run: python app.py
+  Deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout code from repo
+        uses: actions/checkout@v4
+      - name: install python on the server
+        uses: actions/setup-ptyhon@v5
+        with:
+          python-version: 3.13
+      - name: installing dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install flask
+          sudo apt-get update
+          sudo apt-get install -y sqlite3
