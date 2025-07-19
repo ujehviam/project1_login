@@ -13,6 +13,7 @@ jobs:
       - name: installing dependencies
         run: |
           python -m pip install --upgrade pip
+          pip install flask
           sudo apt-get update
           sudo apt-get install -y sqlite3
       - name:
