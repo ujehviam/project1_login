@@ -19,6 +19,7 @@ jobs:
       - name: test application code
         run: python app.py &
   Deploy:
+    needs: Test
     runs-on: ubuntu-latest
     steps:
       - name: checkout code from repo
