@@ -1,0 +1,8 @@
+name: Creating a workflow to output the job info
+on: workflow_dispatch
+jobs:
+    job_info:
+        runs-on: ubuntu-latest
+        steps:
+            - name: getting_the_info_of_the_job
+              run: echo "{{ toJSON(github) }}"
