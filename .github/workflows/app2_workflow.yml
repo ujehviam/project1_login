@@ -17,14 +17,14 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y sqlite3
       - name: test application code
-        run: python app.py
+        run: python app.py &
   Deploy:
     runs-on: ubuntu-latest
     steps:
       - name: checkout code from repo
         uses: actions/checkout@v4
       - name: install python on the server
-        uses: actions/setup-ptyhon@v5
+        uses: actions/setup-python@v5
         with:
           python-version: 3.13
       - name: installing dependencies
