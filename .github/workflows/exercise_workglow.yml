@@ -1,0 +1,11 @@
+name: issues_event
+on: 
+    issues:
+        types: [opened]
+jobs:
+    Issues_workflow:
+        runs-on: ubuntu-latest
+        steps:
+        - name: get_a_notification_when_a_new_issue_is_opened
+          run: echo "${{github.event.issue.title}}"
+
